@@ -1,3 +1,3 @@
-# postal_code
+# flutter_example
 
 A new Flutter project.

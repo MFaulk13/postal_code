@@ -1,0 +1,17 @@
+name: flutter_example
+description: Example app for the postal code package
+publish_to: 'none'
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.6 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  postal_code:
+    path: ../flutter_lib
+
+flutter:
+  uses-material-design: true
