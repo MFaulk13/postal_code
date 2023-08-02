@@ -1,5 +1,12 @@
 # Postal code
 
-Simple auto-complete field for postal codes anywhere around the world.
+Simple auto-complete field for postal codes in any country around the world.
 
-<img src="../doc/screenshot.png" alt="Screenshot" />
+    PostalCodeField(
+        countryCode: "cz",
+        onSelected: (postalCode) {
+            ...
+        },
+    ),
+
+<img src="doc/screenshot.png" alt="Screenshot" />
