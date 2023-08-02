@@ -5,9 +5,16 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 class PostalCodeField extends StatelessWidget {
+  /// ISO-3166 country code
   final String countryCode;
+
+  /// Will be called when a [PostalCode] is selected
   final Function(PostalCode)? onSelected;
+
+  /// Hint for the text field
   final String? hint;
+
+  /// Suffix icon in the text field
   final Widget? suffixIcon;
 
   PostalCodeField({
@@ -131,10 +138,20 @@ class _PostalCodeService {
 }
 
 class PostalCode {
+  /// Suggested postal code
+  /// Formatting varies country to country
   final String postalCode;
+
+  /// Name of the city or area represented by the postal code
   final String city;
+
+  /// ISO 3166 code of the country where postal codes were queried
   final String countryCode;
+
+  /// Latitude part of coordinates in the center of area represented by the postal code
   final double latitude;
+
+  /// Longitude part of coordinates in the center of area represented by the postal code
   final double longitude;
 
   const PostalCode({
