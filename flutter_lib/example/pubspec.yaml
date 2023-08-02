@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
 
   postal_code:
-    path: ../flutter_lib
+    path: ../
 
 flutter:
   uses-material-design: true
