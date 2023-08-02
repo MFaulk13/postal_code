@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,7 +18,7 @@ class PostalCodeField extends StatelessWidget {
     this.suffixIcon,
   }) : super(key: key);
 
-  final service = PostalCodeService();
+  final _service = _PostalCodeService();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,7 @@ class PostalCodeField extends StatelessWidget {
         optionsBuilder: (textEditingValue) async {
           final query = textEditingValue.text;
           return query.isNotEmpty
-              ? await service.getpostalCodes(query, countryCode)
+              ? await _service.getpostalCodes(query, countryCode)
               : [];
         },
         displayStringForOption: (option) =>
@@ -90,11 +89,11 @@ class PostalCodeField extends StatelessWidget {
   }
 }
 
-class PostalCodeService {
-  late final client = HttpClient();
-
+class _PostalCodeService {
   Future<List<PostalCode>> getpostalCodes(
-      String query, String countryCode) async {
+    String query,
+    String countryCode,
+  ) async {
     final url = Uri.https(
       'public.opendatasoft.com',
       '/api/records/1.0/search/',
