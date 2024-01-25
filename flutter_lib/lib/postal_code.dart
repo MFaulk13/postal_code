@@ -33,7 +33,7 @@ class PostalCodeField extends StatelessWidget {
       builder: (context, constraints) => Autocomplete<PostalCode>(
         optionsBuilder: (textEditingValue) async {
           final query = textEditingValue.text;
-          return query.isNotEmpty
+          return query.length > 1
               ? await _service.getpostalCodes(query, countryCode)
               : [];
         },
@@ -102,29 +102,26 @@ class _PostalCodeService {
     String countryCode,
   ) async {
     final url = Uri.https(
-      'public.opendatasoft.com',
-      '/api/records/1.0/search/',
-      {
-        'dataset': 'geonames-postal-code',
-        'rows': '100',
-        'refine.country_code': countryCode.toUpperCase(),
-        'q': query,
-      },
+      'zip-api.eu',
+      '/api/v1/codes/postal_code=${countryCode.toUpperCase()}-$query*',
     );
 
     final response = await http.get(url);
-    final data = jsonDecode(response.body);
-    final List records = data['records'];
 
-    return records
-        .map((record) {
-          final fields = record['fields'];
+    if (response.statusCode != 200) {
+      return [];
+    }
+
+    final List items = jsonDecode(response.body);
+
+    return items
+        .map((item) {
           return PostalCode(
-            postalCode: fields['postal_code'],
-            city: fields['place_name'],
-            countryCode: fields['country_code'],
-            latitude: fields['latitude'],
-            longitude: fields['longitude'],
+            postalCode: item['postal_code'],
+            city: item['place_name'],
+            countryCode: item['country_code'],
+            latitude: double.parse(item['lat']),
+            longitude: double.parse(item['lng']),
           );
         })
         .where(
