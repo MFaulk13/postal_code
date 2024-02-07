@@ -112,7 +112,13 @@ class _PostalCodeService {
       return [];
     }
 
-    final List items = jsonDecode(response.body);
+    dynamic parsedResponse = jsonDecode(response.body);
+    List items = [];
+    if (parsedResponse is List) {
+      items.addAll(parsedResponse);
+    } else if (parsedResponse is Map) {
+      items.add(parsedResponse);
+    }
 
     return items
         .map((item) {
