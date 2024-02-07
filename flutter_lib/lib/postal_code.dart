@@ -11,6 +11,9 @@ class PostalCodeField extends StatelessWidget {
   /// Will be called when a [PostalCode] is selected
   final Function(PostalCode)? onSelected;
 
+  /// Label for the text field
+  final Text? label;
+
   /// Hint for the text field
   final String? hint;
 
@@ -21,6 +24,7 @@ class PostalCodeField extends StatelessWidget {
     Key? key,
     required this.countryCode,
     required this.onSelected,
+    this.label,
     this.hint,
     this.suffixIcon,
   }) : super(key: key);
@@ -80,6 +84,7 @@ class PostalCodeField extends StatelessWidget {
             controller: textEditingController,
             focusNode: focusNode,
             decoration: InputDecoration(
+              label: label,
               hintText: hint,
               counter: const SizedBox(),
               suffixIcon: suffixIcon,
