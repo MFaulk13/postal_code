@@ -11,6 +11,9 @@ class PostalCodeField extends StatelessWidget {
   /// Will be called when a [PostalCode] is selected
   final Function(PostalCode)? onSelected;
 
+  /// Initial value for the text field
+  final TextEditingValue? initialValue;
+
   /// Label for the text field
   final Text? label;
 
@@ -24,6 +27,7 @@ class PostalCodeField extends StatelessWidget {
     Key? key,
     required this.countryCode,
     required this.onSelected,
+    this.initialValue,
     this.label,
     this.hint,
     this.suffixIcon,
@@ -35,6 +39,7 @@ class PostalCodeField extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) => Autocomplete<PostalCode>(
+        initialValue: initialValue,
         optionsBuilder: (textEditingValue) async {
           final query = textEditingValue.text;
           return query.length > 1

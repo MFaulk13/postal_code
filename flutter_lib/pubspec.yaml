@@ -2,7 +2,7 @@ name: postal_code
 description: Autocomplete field for postal codes in any country around the world
 repository: https://github.com/Lamorak/postal_code/tree/master/flutter_lib
 
-version: 0.0.3
+version: 0.0.4
 
 environment:
   sdk: '>=3.0.5 <4.0.0'

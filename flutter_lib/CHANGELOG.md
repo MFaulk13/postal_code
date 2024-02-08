@@ -1,3 +1,8 @@
+## 0.0.4
+- Bugfix for single json object
+- Added label
+- Added initial value
+
 ## 0.0.3
 - Switched service to [ZIPAPI](https://zip-api.eu/en/)
 - Updated dependencies
